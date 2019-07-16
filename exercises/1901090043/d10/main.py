@@ -1,6 +1,7 @@
+# coding:utf-8  
 from os import path
 import jieba
-import mymodule.stats_word as stats_word
+import mymodule.stats_word as stw
 
 #读取 /009/tang300.json
 cwd = path.abspath(path.dirname(__file__))
@@ -11,7 +12,7 @@ with open(txt_path,'r') as file_object:
         file_content = file_content + line
 try:
     #对列表中中英文字符，进行统计降序排列
-    sort_list = stats_word.stats_text_cn(file_content,20)
+    sort_txt = stw.stats_text_cn(file_content,20)
 except ValueError as result:
     print(result)
-print(sort_list)
+print(sort_txt)

@@ -1,3 +1,4 @@
+# coding:utf-8  
 from collections import Counter
 from os.path import *
 import re
@@ -9,8 +10,8 @@ def stats_text_en(text,count):
     path = abspath('stats_word.py')
     if type(text) != str:
         raise ValueError('异常！你输入的不是字符串！',path+' line 9') 
-    word_list = re.findall(pattern,text)
-    return dict(Counter(word_list).most_common(count))
+    filt_txt = re.findall(pattern,text)
+    return dict(Counter(filt_txt).most_common(count))
 
 #参数：字符串文本，输出按汉子的统计排名
 def stats_text_cn(text,count):
@@ -19,31 +20,29 @@ def stats_text_cn(text,count):
     if type(text) != str:
         raise ValueError('异常！你输入的不是字符串！',path+' line 27') 
     #找到所有中文汉字
-    new_list = re.findall(pattern1,text)
-    new_string = ''
-    for items in new_list:
-        new_string = new_string + items
+    filt_txt = re.findall(pattern1,text)
+    new_txt = ''
+    for items in filt_txt:
+        new_txt = new_txt + items
     #用结巴函数进行分词，得到列表
-    new_string = list(jieba.cut(new_string))
+    new_txt = list(jieba.cut(new_txt))
     #删除为一个字的词
-    for items in new_string:
+    for items in new_txt:
         if len(items) == 1:
-            new_string.remove(items)
-    new_dic = dict(Counter(new_string).most_common(count))
-    return new_dic
+            new_txt.remove(items)
+    return dict(Counter(new_txt).most_common(count))
 
 #调用stats_text_en()，stats_text_cn()两个函数并且合并排序输出
 def stats_text(text,count):   
     path = abspath('stats_word.py')
     if type(text) != str:
         raise ValueError('异常！你输入的不是字符串！',path+' line 46') 
-    dic = stats_text_en(text)
-    dic1 = stats_text_cn(text)
+    eng_txt = stats_text_en(text)
+    chi_txt = stats_text_cn(text)
     #合并dic，dic1
-    merge_dic = dict(dic,**dic1)
+    merge_txt = dict(eng_txt,**chi_txt)
     #对新字典排序统计
-    dic_result = Counter(merge_dic).most_common(count)
-    return dic_result
+    return Counter(merge_txt).most_common(count)
     
     
 

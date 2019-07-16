@@ -1,12 +1,12 @@
+# coding:utf-8
 import requests
 from pyquery import PyQuery
 import yagmail
 import getpass
-# coding:utf-8  
 import json
 import requests
 from wxpy import *
-import mymodule.stats_word as stats_word
+import mymodule.stats_word as stw
 
 bot = Bot(cache_path=True)#登录缓存
 print('姜翔AI已经启动')
@@ -19,8 +19,8 @@ def auto_ai(text):
         document = PyQuery(response.text) 
         content = document('#js_content').text()
         #对列表中中英文字符，进行统计降序排列
-        sort_list = stats_word.stats_text(content,100)
-        return str(sort_list)
+        sort_txt = stw.stats_text(content,100)
+        return str(sort_txt)
     except ValueError as result:
         print(result)
     except:

@@ -1,3 +1,4 @@
+# coding:utf-8  
 import pprint
 import re
 
@@ -9,29 +10,29 @@ Explicit is better'''
 #字符串文本按照单词排序
 def stats_text_en(text):
     pattern = re.compile( "[A-Z]*[a-z]+")
-    word_list = re.findall(pattern,text)
-    dic = {}
-    for item in word_list:
-        if item not in dic:
-            dic[item] = 1
+    filt_txt = re.findall(pattern,text)
+    words_cnt = {}
+    for item in filt_txt:
+        if item not in words_cnt:
+            words_cnt[item] = 1
         else:
-            dic[item] += 1
-    dic = sorted(dic.items(),key = lambda x:x[1],reverse = True)
-    return dic
+            words_cnt[item] += 1
+    words_cnt = sorted(words_cnt.items(),key = lambda x:x[1],reverse = True)
+    return words_cnt
 
 #参数：字符串文本，输出按汉子的统计排名
 def stats_text_cn(text):
     pattern1 = re.compile( "[\u4E00-\u9FA5]")
-    new_list = re.findall(pattern1,text)
-    dic1 = {}
-    for item in new_list:
+    filt_txt = re.findall(pattern1,text)
+    chi_words_txt = {}
+    for item in filt_txt:
         item = item.strip()
-        if item not in dic1:
-            dic1[item] = 1
+        if item not in chi_words_txt:
+            chi_words_txt[item] = 1
         else:
-            dic1[item] += 1        
+            chi_words_txt[item] += 1        
     #把汉子装入词典
-    dic1 = sorted(dic1.items(),key = lambda x:x[1] ,reverse = True)
-    return dic1
+    chi_words_txt = sorted(chi_words_txt.items(),key = lambda x:x[1] ,reverse = True)
+    return chi_words_txt
 
 pprint.pprint(stats_text_en(text))

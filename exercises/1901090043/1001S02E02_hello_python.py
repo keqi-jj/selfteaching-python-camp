@@ -1,9 +1,10 @@
+# coding:utf-8  
 print("hello world!")
 
-def f(n):
+def fun_ren(n):
     if n == 1:
         return 1
     else:
-        return n * f(n-1)
+        return n * fun_ren(n-1)
     
-print(f(5))
+print(fun_ren(5))

@@ -1,3 +1,4 @@
+# coding:utf-8  
 import re
 
 text = '''
@@ -16,22 +17,22 @@ print("替换字符结果为：",re_text)
 print('删除含有ea的单词'.center(150,'*'))
 
 pattern = re.compile('[A-Z]*[a-z]+')
-del_text = re.findall(pattern,text)
-newdel_text = []
-for item in del_text:
+filt_txt = re.findall(pattern,text)
+del_text = []
+for item in filt_txt:
     if not "ea" in item:
-        newdel_text.append(item)
-print(newdel_text)
+        del_text.append(item)
+print(del_text)
 
 print('把单词大小写进行翻转'.center(150,'*'))
 swi_txt = []
-for item in range(0,len(newdel_text)):
-    swi_txt.append(newdel_text[item].swapcase())
+for item in range(0,len(del_text)):
+    swi_txt.append(del_text[item].swapcase())
 print(swi_txt)
 
 print('单词字母升序'.center(150,'*'))
-rank_word = sorted(swi_txt,key = str.lower)
-print(rank_word)
+sor_word = sorted(swi_txt,key = str.lower)
+print(sor_word)
 
 
 

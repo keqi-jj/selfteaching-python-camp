@@ -1,3 +1,4 @@
+# coding:utf-8  
 import operator
 import pprint
 import re
@@ -12,14 +13,14 @@ Although never is often better than *right* now.If the implementation is hard to
 Namespaces are one honking great idea -- let's do more of those!
  '''
 pattern = re.compile('[A-Z]*[a-z]+')
-new_text = re.findall(pattern,text)
-d={}
-for word in new_text:
+filt_txt = re.findall(pattern,text)
+words_cnt = {}
+for word in filt_txt:
     #word = word.strip()
-    if not word in d:
+    if not word in words_cnt:
         if word != "\n":
-            d[word]=1
+            words_cnt[word] = 1
     else:
-        d[word]=d[word]+1
-new_text = sorted(d.items(),key = lambda x:x[1],reverse = True)
-pprint.pprint(new_text)
+        words_cnt[word] = words_cnt[word] + 1
+sort_words_cnt = sorted(words_cnt.items(),key = lambda x:x[1],reverse = True)
+pprint.pprint(sort_words_cnt)

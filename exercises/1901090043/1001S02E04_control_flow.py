@@ -1,5 +1,6 @@
+# coding:utf-8  
 #for 循环打印乘法表
-def controlflow():
+def control_flow():
     for a in range(1,10):
         for b in range(1 , a+1):   
             if(b == a):
@@ -26,5 +27,5 @@ def controlflow():
             else: 
                 c += 1
                 break
-controlflow()
+control_flow()
 

@@ -1,3 +1,4 @@
+#coding:utf-8
 import requests
 from os import path
 from pyquery import PyQuery
@@ -6,10 +7,9 @@ import getpass
 from wxpy import *
 import matplotlib.pyplot as plt
 import numpy as np
-#coding:utf-8
 import json
 from matplotlib.font_manager import FontProperties
-import mymodule.stats_word as stats_word
+import mymodule.stats_word as stw
 
 #登录缓存
 bot = Bot(cache_path=True)
@@ -53,9 +53,9 @@ def auto_ai(text,path):
         document = PyQuery(response.text)
         content = document('#js_content').text()
         #对列表中中英文字符，进行统计降序排列
-        sort_list = stats_word.stats_text(content,10)
+        sort_txt = stw.stats_text(content,10)
         #调用绘表函数
-        tabber(sort_list,path)
+        tabber(sort_txt,path)
     except ValueError as result:
         print(result)
     except:

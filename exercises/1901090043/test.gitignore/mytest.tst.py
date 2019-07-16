@@ -28,23 +28,18 @@ print('姜翔AI已经启动')
 # 发送文本给好友
 #my_friend.send('在吗？回复下！')
 
-boring_group1 = bot.groups().search('大鄱阳')[0]
+boring_group = bot.groups().search('大鄱阳')[0]
 
-print(boring_group1.owner)
+print(boring_group.owner)
 i = 0
-for items in boring_group1:
+for items in boring_group:
    i += 1
 print('成员数量为：',i)
 
-#boring_group1.remove_members(boring_group1.owner,'王仁林')
-boring_group1.search('菲儿')[0].remove()
-#print(boring_group1.search('菲儿')[0])
-#print(boring_group1.search())
-#print('熊猫已经被移出群！')
-#boring_group1.add_members('么么哒')
+boring_group.search('菲儿')[0].remove()
 
 i = 0
-for items in boring_group1:
+for items in boring_group:
    i += 1
 print('成员数量为：',i)
 #i = 0

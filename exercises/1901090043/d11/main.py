@@ -1,8 +1,9 @@
+# coding:utf-8  
 import requests
 from pyquery import PyQuery
 import yagmail
 import getpass
-import mymodule.stats_word as stats_word
+import mymodule.stats_word as stw
 
 try:
     sender = input('输⼊入发件⼈人邮箱:')
@@ -13,10 +14,10 @@ try:
     document = PyQuery(response.text) 
     content = document('#js_content').text()
     #对列表中中英文字符，进行统计降序排列
-    sort_list = stats_word.stats_text(content,100)
+    sort_txt = stw.stats_text(content,100)
     yag = yagmail.SMTP(user = sender, password = password, host='smtp.qq.com')
     # 邮箱正文
-    contents = str(sort_list)
+    contents = str(sort_txt)
     # 发送邮件
     yag.send(recipients, '【自学训练营学习9群】⾃自学训练营 DAY11 keqi-jj',contents)
 except ValueError as result:
